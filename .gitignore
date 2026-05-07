@@ -1,0 +1,28 @@
+# Environments
+venv/
+env/
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Datasets and Models (Very Important for ML!)
+data/
+models/
+*.csv
+*.pkl
+*.joblib
+*.h5
+*.parquet
+
+# VS Code or IDE settings
+.vscode/
+.idea/
+
+# Mac system files (just in case)
+.DS_Store
