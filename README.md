@@ -48,7 +48,7 @@ credit-card-fraud-detection/
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repository-url>
+   git clone https://github.com/DBMoktan/credit-card-fraud-detection.git
    cd credit-card-fraud-detection
    ```
 
