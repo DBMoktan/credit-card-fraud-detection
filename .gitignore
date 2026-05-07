@@ -12,8 +12,6 @@ __pycache__/
 .ipynb_checkpoints
 
 # Datasets and Models (Very Important for ML!)
-data/
-models/
 *.csv
 *.pkl
 *.joblib
