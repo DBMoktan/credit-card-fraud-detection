@@ -14,6 +14,18 @@ st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide", page_i
 st.title("💳 Credit Card Fraud Detection Dashboard")
 st.markdown("This dashboard connects to a FastAPI backend running an XGBoost model to predict fraudulent credit card transactions in real-time.")
 
+with st.expander("ℹ️ Understanding the Data (Why 'V1-V28'?)", expanded=False):
+    st.markdown("""
+    Due to confidentiality issues, the original features of the credit card transactions cannot be shown. 
+    Instead, the data has gone through a mathematical transformation called **PCA (Principal Component Analysis)**.
+    
+    * **V1 to V28**: These are the anonymized PCA features. Their exact meaning is hidden to protect user privacy, but they typically contain values ranging between -5 and 5.
+    * **Scaled Amount**: The transaction amount (e.g., dollars). It has been scaled (normalized) so extreme values don't confuse the model.
+    * **Scaled Time**: The seconds elapsed since the first recorded transaction, also scaled.
+    
+    *Since manually typing 30 abstract numbers is difficult, we recommend using the **'Load Sample'** buttons on the sidebar to test the model with real data!*
+    """)
+
 # Attempt to load test data for sample generation
 @st.cache_data
 def load_test_data():
@@ -62,6 +74,7 @@ if 'sample_loaded' in st.session_state and st.session_state['sample_loaded']:
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("Transaction Features")
+st.sidebar.caption("Hover over the ❓ icons for details on what values to input.")
 
 # Create default values in session state if not present
 if 'scaled_amount' not in st.session_state:
@@ -73,16 +86,32 @@ for i in range(1, 29):
         st.session_state[f'V{i}'] = 0.0
 
 # Input fields
-scaled_amount = st.sidebar.number_input("Scaled Amount", value=st.session_state['scaled_amount'], format="%.4f")
-scaled_time = st.sidebar.number_input("Scaled Time", value=st.session_state['scaled_time'], format="%.4f")
+scaled_amount = st.sidebar.number_input(
+    "Scaled Amount", 
+    value=st.session_state['scaled_amount'], 
+    format="%.4f",
+    help="Normalized transaction amount. Original values (like $150) are scaled to center around 0. Typically ranges from -1.0 to 10.0."
+)
+scaled_time = st.sidebar.number_input(
+    "Scaled Time", 
+    value=st.session_state['scaled_time'], 
+    format="%.4f",
+    help="Normalized elapsed time. Scaled to center around 0. Typically ranges from -1.0 to 1.0."
+)
 
 # Update session state
 st.session_state['scaled_amount'] = scaled_amount
 st.session_state['scaled_time'] = scaled_time
 
-with st.sidebar.expander("PCA Features (V1 - V28)"):
+with st.sidebar.expander("Anonymized Features (V1 - V28)"):
+    st.caption("Principal Components. Most values range between -3.0 and +3.0.")
     for i in range(1, 29):
-        val = st.number_input(f"V{i}", value=st.session_state[f'V{i}'], format="%.4f")
+        val = st.number_input(
+            f"V{i}", 
+            value=st.session_state[f'V{i}'], 
+            format="%.4f",
+            help=f"Anonymized PCA feature {i} representing hidden transaction behavior."
+        )
         st.session_state[f'V{i}'] = val
 
 # Main content area
