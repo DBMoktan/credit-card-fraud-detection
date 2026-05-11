@@ -15,9 +15,9 @@ app = FastAPI(
 MODEL_PATH = "models/xgboost_fraud_model.pkl"
 try:
     model = joblib.load(MODEL_PATH)
-    print(f"✅ Model loaded successfully from {MODEL_PATH}")
+    print(f"[SUCCESS] Model loaded successfully from {MODEL_PATH}")
 except Exception as e:
-    print(f"❌ Error loading model: {e}")
+    print(f"[ERROR] Error loading model: {e}")
     model = None
 
 # Pydantic schema for input validation
