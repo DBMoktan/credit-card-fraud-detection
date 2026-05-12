@@ -6,7 +6,8 @@ import os
 import random
 
 # Constants
-API_URL = "http://localhost:8000/predict"
+# When running in Docker, we can point to localhost since both apps share the same container
+API_URL = os.getenv("API_URL", "http://localhost:8000/predict")
 PROCESSED_DATA_DIR = "data/processed/"
 
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide", page_icon="💳")
