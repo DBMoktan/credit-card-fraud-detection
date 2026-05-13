@@ -1,6 +1,6 @@
 # Credit Card Fraud Detection System
 
-An end-to-end Machine Learning pipeline to detect fraudulent credit card transactions. This project encompasses data engineering (handling extreme class imbalance), model training (XGBoost/Random Forest), a real-time REST API built with FastAPI, and an interactive Streamlit dashboard. The entire application is containerized using Docker and designed for cloud deployment.
+An end-to-end Machine Learning pipeline to detect fraudulent credit card transactions. This project encompasses data engineering which involves handling extreme class imbalance, model training (XGBoost/random forest), a real-time REST API built with FastAPI, and an interactive Streamlit dashboard. The entire application is containerized using Docker and designed for cloud deployment.
 
 ## 📊 Dataset Setup
 
@@ -10,11 +10,11 @@ To run this project locally, you must download the dataset manually:
 
 1. Visit the [Credit Card Fraud Detection Dataset on Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud).
 2. Download the archive and extract the `creditcard.csv` file.
-3. Place the `creditcard.csv` file inside the `data/` folder in the root of this project.
+3. Place the `creditcard.csv` file inside the `data/raw` folder in the root of this project.
 
 ```text
 credit-card-fraud-detection/
-└── data/
+└── data/raw
     └── creditcard.csv  <-- Place the downloaded file here
 ```
 
